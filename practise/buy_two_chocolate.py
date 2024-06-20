@@ -1,17 +1,12 @@
 def buy_choco(prices, money):
     sorted = list(filter(lambda x: x < money, prices))
-    print(sorted)
-    first_value = round(money / 2)
-    second_value = money - first_value
-    print(second_value)
-    for i in sorted:
-        if i <= first_value:
-            first_value = i
-            continue
-        if i <= second_value:
-            first_value += i
-            break
-    print(first_value)
+    if len(sorted) == 0:
+        return money
+    first_value = 0
+    for i in range(0, len(sorted)):
+        for a in range(0 + i, len(sorted)):
+            if i + a <= money:
+                first_value = i+a
+                return first_value
     money -= first_value
-    print(money)
     return money
